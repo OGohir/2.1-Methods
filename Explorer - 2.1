@@ -1,0 +1,128 @@
+//Explorer method
+
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Explorers visit Countries.
+ * 
+ * @author Omaima
+ */
+public class Explorer extends Actor
+{
+    String name;
+    Country home;
+    String countriesVisited;
+    float dollars;
+    int numOfCountries;
+    int numOfPages;
+    
+    Explorer(String firstName, Country homeCountry)
+    {
+        name = firstName;
+        home = homeCountry;
+        countriesVisited = "";
+        dollars = 500.00f;
+    }
+    
+    /**
+     * Return to home city.
+     */
+    void goHome()
+    {
+        travelTo(home);
+    }
+    
+    /**
+     * Return true if this Explorer is in her home City.
+     */
+    boolean isHome()
+    {
+        if (intersects(home))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    boolean isBroke()
+    {
+        if (dollars == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    double needsMoney()
+    {
+        return dollars + 100;
+    }
+    
+    int numOfCountries() {
+        numOfCountries = numOfCountries + 1;
+        return numOfCountries - 1;
+    }
+    
+    int numOfPages() {
+        numOfPages = numOfCountries - 1;
+        return numOfPages;
+    }
+    
+    /**
+     * Deducts the amount from dollars.
+     */
+    void spend(float amount)
+    {
+        dollars = dollars - amount;
+    }
+    
+    /**
+     * Returns the value of money left.
+     */
+    double getDollars()
+    {
+        return dollars;
+    }
+    
+    /**
+     * Move in the south-west direction.
+     */
+    void travelSouthWest()
+    {
+        setLocation(getX() - 30, getY() + 30);
+    }
+    
+    /**
+     * Move to the specified City. Click on a City to visit when invoking this method.
+     * Record the visit to this City in the String countriesVisited.
+     */
+    void travelTo(Country country)
+    {
+        setLocation(country.getX(), country.getY());
+        
+        countriesVisited = countriesVisited + " " + country.name;
+    }
+    
+    /**
+     * Get a String listing the countries visited.
+     */
+    String getPassport()
+    {
+        return countriesVisited;
+    }    
+    String getName()
+    {
+        return name;
+    }
+    
+    /**
+     * Returns the distance to the specified City.
+     */
+    double getDistance(Country destination)
+    {
+        double deltaX = getX() - destination.getX();
+        double deltaY = getY() - destination.getY();
+        return Math.sqrt( deltaX*deltaX + deltaY*deltaY );
+    }
+    
+}

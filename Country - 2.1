@@ -1,0 +1,21 @@
+// country method
+
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class City here.
+ * 
+ * @author Omaima
+ */
+public class Country extends Actor
+{
+    String name;  
+    
+    Country(String country)
+    {
+        name = country;
+        
+        GreenfootImage image = getImage();
+        image.drawString(name, 10, 60);
+    }
+}
